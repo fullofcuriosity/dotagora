@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dotagora — Builder Landing Page</title>
+  <meta name="description" content="Wonderlink-style with a modular builder: icon-first UI, video background, optional shop and booking." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Fira+Code:wght@400;600&family=Indie+Flower&family=JetBrains+Mono:wght@400;600&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&family=Oswald:wght@400;600&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-builder">
+  <!-- Background video + overlay -->
+  <video class="bg-video" autoplay muted loop playsinline poster="video-poster.jpg" aria-hidden="true">
+    <source src="transparency.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-overlay" aria-hidden="true"></div>
+
+  <!-- 🧩 Puzzle background -->
+  <div class="puzzle-bg" id="puzzle"><div class="bg-full"></div></div>
+
+  <!-- Central stack -->
+  <main class="stack">
+    <!-- Profile card -->
+    <header id="profile" class="card profile" data-module>
+      <div class="avatar-circle" data-avatar-bg></div>
+      <h1 class="hero-title" data-company>Dotagora</h1>
+      <p class="subtitle" data-slogan>Alle Infos an einem digitalen Ort auf einen Blick.</p>
+      <p class="subtitle" data-slogan2>Inspiriert von der Agora – dem zentralen Ort im antiken Griechenland.</p>
+
+      <!-- Social & contact -->
+      <nav class="icons" aria-label="Social & Kontakt">
+        <a class="icon-btn" id="qr-btn" href="#" title="QR-Code" aria-label="QR-Code"><i class="bi bi-qr-code"></i></a>
+        <a class="icon-btn" href="https://www.twitch.tv/deinprofil" target="_blank" rel="noopener" title="Twitch" aria-label="Twitch"><i class="bi bi-twitch"></i></a>
+        <a class="icon-btn" href="https://instagram.com/deinprofil" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a class="icon-btn" href="https://facebook.com/deinprofil" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a class="icon-btn" href="https://www.linkedin.com/company/deinprofil" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="icon-btn" href="mailto:hallo@firma.at" title="E-Mail" aria-label="E-Mail"><i class="bi bi-envelope-fill"></i></a>
+        <a class="icon-btn" href="tel:+43123456789" title="Telefon" aria-label="Telefon"><i class="bi bi-telephone-fill"></i></a>
+        <a class="icon-btn" href="https://maps.google.com/?q=48.2082,16.3738" target="_blank" rel="noopener" title="Standort"><i class="bi bi-geo-alt-fill"></i></a>
+      </nav>
+    </header>
+
+    <!-- Booking (toggle via builder) -->
+    <section id="booking" class="card booking" data-module hidden>
+      <h2 class="section-title">Book an appointment</h2>
+      <div class="booking-body">
+        <a class="btn primary big" href="https://cal.com/YOURNAME/30min" target="_blank" rel="noopener">Choose time</a>
+      </div>
+    </section>
+
+    <!-- OUTPUT: Services-Karten (wird per JS gerendert) -->
+    <section id="services-list" class="services-grid"></section>
+
+<!-- Shop / Offers (toggle via builder) -->
+<section id="offers" class="card offers" data-module hidden>
+  <details class="accordion" open>
+    <summary>
+      <span class="summary-icon"></span>
+      <span class="section-title">Shop</span>
+      <span class="chev" aria-hidden="true"></span>
+    </summary>
+
+<div class="shop-gap"></div>
+
+
+    <!-- NEU: horizontales Produkt-Band mit Pfeilen -->
+    <div class="products-row">
+      <!-- Links-Pfeil -->
+      <button class="products-arrow left" data-dir="-1" aria-label="Zurück" type="button">‹</button>
+
+      <!-- Produktband, wird per JS gefüllt -->
+      <div id="productsGrid" class="offers-grid products"></div>
+ 
+      <!-- Rechts-Pfeil -->
+      <button class="products-arrow right" data-dir="1" aria-label="Weiter" type="button">›</button>
+    </div>
+
+
+
+  </details>
+</section> 
+
+
+    <!-- Services-List (klassisch) -->
+    <section id="services" class="card services" data-module hidden>
+      <h2 class="section-title">Services</h2>
+      <ul class="service-list">
+        <li><span class="name">Service 1</span><span class="dot"></span><span class="note">Short description</span></li>
+        <li><span class="name">Service 2</span><span class="dot"></span><span class="note">Short description</span></li>
+      </ul>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="card contact" data-module>
+      <h2 class="section-title">About us</h2>
+      <p id="bizDesc" class="subtitle desc" data-max="500"></p>
+      <div class="contact-icons"></div>
+      
+     <div class="legal-links">
+  <button class="btn small legal-open" data-legal="imprint"  type="button">Impressum</button>
+  <button class="btn small legal-open" data-legal="privacy"  type="button">Datenschutz</button>
+  <button class="btn small legal-open" data-legal="terms"    type="button">AGB</button>
+</div>
+
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="card reviews" data-module hidden>
+      <h2 class="section-title">References</h2>
+      <ul class="review-list">
+        <li>⭐⭐⭐⭐⭐ “Super fast & transparent.” — A. Meyer</li>
+        <li>⭐⭐⭐⭐ “Direct booking, no back-and-forth.” — L. Novak</li>
+      </ul>
+    </section>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span data-company>Dotagora</span> © <span id="year"></span>
+  </div>
+</footer>
+
+
+  </main>
+
+  <!-- Cart Drawer + FAB -->
+  <aside id="cartDrawer" class="cart" aria-label="Cart" aria-hidden="true" data-module hidden>
+    <div class="cart-head">
+      <h3>Cart</h3>
+      <button id="cartClose" class="btn">✕</button>
+    </div>
+    <ul id="cartItems" class="cart-items"></ul>
+    <div class="cart-foot">
+      <div><span>Subtotal:</span> <strong id="cartSum">€0</strong></div>
+      <button id="cartCheckout" class="btn primary">Checkout</button>
+    </div>
+  </aside>
+  <button id="cartFab" class="cart-fab" aria-label="Open cart" data-module hidden>
+    <i class="bi bi-cart"></i><span id="cartCount">0</span>
+  </button>
+
+  <!-- QR Modal -->
+  <div id="qr-modal" class="qr-modal" aria-hidden="true">
+    <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qr-title">
+      <h2 id="qr-title">QR-Code</h2>
+      <div id="qr-code" class="qr-code-box"></div>
+      <div class="qr-actions">
+        <button id="qr-save"  class="btn small" type="button">Save as PNG</button>
+        <button id="qr-close" class="btn small" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- File Upload Modal -->
+  <div id="file-modal" class="qr-modal" aria-hidden="true">
+    <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="file-title">
+      <h2 id="file-title" class="card-title">Upload file</h2>
+
+      <div id="dropzone" class="dropzone" tabindex="0">
+        <div class="dz-inner">
+          <i class="bi bi-cloud-arrow-up"></i>
+          <p>Drag & drop here</p>
+          <button id="file-choose" class="btn small" type="button">Choose file</button>
+          <input id="file-input" type="file" hidden accept=".png,.jpg,.jpeg,.webp,.svg,.pdf">
+          <div id="file-meta" class="file-meta" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="qr-actions">
+        <button id="file-use" class="btn small" type="button" disabled>Use file</button>
+        <button id="file-cancel" class="btn small" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="productsHoverLayer" aria-hidden="true"></div>
+
+
+<!-- Legal Modal -->
+<div id="legal-modal" class="qr-modal" aria-hidden="true">
+  <div class="qr-dialog legal-dialog" role="dialog" aria-modal="true" aria-labelledby="legal-title">
+    <h2 id="legal-title">Rechtliches</h2>
+
+    <div id="legal-body" class="legal-body">
+      <!-- Text kommt dynamisch aus JS -->
+    </div>
+
+    <div class="qr-actions legal-actions">
+      <button id="legal-close" class="btn small" type="button">Schließen</button>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+  <script src="/app.js"></script>
+
+
+</body>
+</html>
